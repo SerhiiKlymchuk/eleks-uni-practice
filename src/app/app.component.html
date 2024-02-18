@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="card col-md-6">
+    <h1>Currency Converter</h1>
+    <div *ngIf="isDataAvailable">
+      <form name="form-exchange" (ngSubmit)="onSubmit()">
+        <div
+          class="form-currency"
+          #formExchange
+          (window:resize)="windowResize()"
+        >
+          <label style="grid-row: 1; grid-column: 1;">Amount</label>
+
+          <div style="grid-row: 1; grid-column: 1;">
+            <div class="input-amount input-field">
+              <span class="prefix">{{ from_symbol }}</span>
+              <input
+                required
+                lang="en-US"
+                type="number"
+                [(ngModel)]="amount_value"
+                (change)="changeAmountValue()"
+                name="amount"
+                (focusout)="changeAmountValue()"
+                #amount_input
+                placeholder="Amount"
+                step="0.01"
+              />
+            </div>
+          </div>
+          <label style="grid-row: 2; grid-column: 1;">From</label>
+
+          <app-currency-selector
+            style="grid-row: 2; grid-column: 1;"
+            #from
+            [selectorId]="'from'"
+            [changeCurrency]="selectFrom"
+          ></app-currency-selector>
+
+          <div></div>
+
+          <div class="buttons-container">
+            <button class="switch-btn" type="button" (click)="switchCurrencies()">
+              <i class="bi bi-arrow-left-right"></i>
+            </button>
+  
+            <button class="history-btn" type="button" title="View History" (click)="openHistory()">
+              <i class="bi bi-clock-history"></i>
+            </button>
+          </div>
+
+
+          <label style="grid-row: 3; grid-column: 1;">To</label>
+
+          <app-currency-selector
+            style="grid-row: 3; grid-column: 1;"
+            #to
+            [selectorId]="'to'"
+            [changeCurrency]="selectTo"
+          ></app-currency-selector>
+        </div>
+
+        <div
+          class="submit-btn text-center"
+          [style.width.px]="formExchange.offsetWidth"
+          #submitBtn
+        >
+          <button type="submit">Convert</button>
+        </div>
+      </form>
+      <div class="result-currency" *ngIf="isResult">
+        <span class="result-from">{{ resultFrom }}</span>
+        <span class="result-to">{{ resultTo }}</span><br>
+        <span class="result-info">{{ resultInfo }}</span>
+      </div>
+    </div>
+    <div class="lds-ellipsis" *ngIf="!isDataAvailable && !failedToLoad">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <div *ngIf="failedToLoad" [style.text-align]="'center'">
+      <h2>
+        <i class="bi bi-bug-fill"></i>
+      </h2>
+      <h3>Failed to load exchange rate from the server</h3>
+    </div>
+  </div>
+</div>

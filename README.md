@@ -1,5 +1,5 @@
 <h1 align="center"> Eleks Currency Converter </h1>
 
-![Screenshot](https://prnt.sc/Rk9Tx2M76_jE)
+![Screenshot](https://img001.prntscr.com/file/img001/GyQ9m6uES2q3gV9t6K6oQw.png)
 
-![Screenshot](https://prnt.sc/6dCISzoD6ml7)
+![Screenshot](https://img001.prntscr.com/file/img001/iQ9BBtRZQEOYuEkCizJYCA.png)
